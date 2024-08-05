@@ -6,6 +6,8 @@ import {
   ClosingBehaviorView,
   CloudStorageView,
   HapticFeedbackView,
+  InitDataView,
+  InvoiceView,
 } from './components';
 
 export const SdkDetailPage = () => {
@@ -22,6 +24,10 @@ export const SdkDetailPage = () => {
         return <CloudStorageView />;
       case SdkPageTypeEnum.HapticFeedbackView:
         return <HapticFeedbackView />;
+      case SdkPageTypeEnum.InitDataView:
+        return <InitDataView />;
+      case SdkPageTypeEnum.InvoiceView:
+        return <InvoiceView />;
       default:
         return <>none</>;
     }

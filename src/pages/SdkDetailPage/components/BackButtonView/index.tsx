@@ -1,5 +1,5 @@
 import { initBackButton } from '@telegram-apps/sdk-react';
-import { List, SegmentedControl } from '@telegram-apps/telegram-ui';
+import { SegmentedControl } from '@telegram-apps/telegram-ui';
 import { useEffect, useState } from 'react';
 
 const { Item: SegmentedControlItem } = SegmentedControl;
@@ -19,31 +19,23 @@ export const BackButtonView = () => {
     };
   }, [backButton]);
   return (
-    <List
-      style={{
-        background: 'var(--tgui--secondary_bg_color)',
-        padding: '40px',
-        width: 500,
-      }}
-    >
-      <SegmentedControl>
-        <SegmentedControlItem
-          onClick={() => {
-            backButton.show();
-          }}
-          selected={backButtonVisible}
-        >
-          show
-        </SegmentedControlItem>
-        <SegmentedControlItem
-          onClick={() => {
-            backButton.hide();
-          }}
-          selected={!backButtonVisible}
-        >
-          hide
-        </SegmentedControlItem>
-      </SegmentedControl>
-    </List>
+    <SegmentedControl>
+      <SegmentedControlItem
+        onClick={() => {
+          backButton.show();
+        }}
+        selected={backButtonVisible}
+      >
+        show
+      </SegmentedControlItem>
+      <SegmentedControlItem
+        onClick={() => {
+          backButton.hide();
+        }}
+        selected={!backButtonVisible}
+      >
+        hide
+      </SegmentedControlItem>
+    </SegmentedControl>
   );
 };

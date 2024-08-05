@@ -1,5 +1,5 @@
 import { initCloudStorage } from '@telegram-apps/sdk-react';
-import { Button, Input, List, Multiselect } from '@telegram-apps/telegram-ui';
+import { Button, Input, Multiselect } from '@telegram-apps/telegram-ui';
 import { MultiselectOption } from '@telegram-apps/telegram-ui/dist/components/Form/Multiselect/types';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -22,62 +22,56 @@ export const CloudStorageView = () => {
   }, [cloudStorage]);
   useEffect(() => {
     defaultKeyListHandler();
-  }, []);
+  });
   return (
-    <List
-      style={{
-        background: 'var(--tgui--secondary_bg_color)',
-        padding: '40px',
-        width: 500,
-      }}
-    >
-      <div>
-        <Input
-          header="Input Value"
-          placeholder="I am usual input, just leave me alone"
-          onChange={(e) => setKey(e.target.value)}
-          value={key}
-        />
-        <Input
-          header="Input Value"
-          placeholder="I am usual input, just leave me alone"
-          onChange={(e) => setVal(e.target.value)}
-          value={val}
-        />
-        <Button
-          disabled={!key || !val}
-          onClick={() => {
-            cloudStorage.set(key, val);
-            setVal('');
-            setKey('');
-            defaultKeyListHandler();
-          }}
-        >
-          Upload File
-        </Button>
-      </div>
+    <div className="flex flex-col gap-y-2 px-2 pt-3">
+      <Input
+        header="Input Value"
+        placeholder="I am usual input, just leave me alone"
+        onChange={(e) => setKey(e.target.value)}
+        value={key}
+        className="grow"
+      />
+      <Input
+        header="Input Value"
+        placeholder="I am usual input, just leave me alone"
+        onChange={(e) => setVal(e.target.value)}
+        value={val}
+        className="grow"
+      />
+      <Button
+        disabled={!key || !val}
+        className="grow mb-3"
+        onClick={() => {
+          cloudStorage.set(key, val);
+          setVal('');
+          setKey('');
+          defaultKeyListHandler();
+        }}
+      >
+        Set Value
+      </Button>
 
-      <div>
-        <Multiselect
-          options={options}
-          value={selected}
-          onChange={(e) => setSelected(e)}
-          // renderChip={(option) => {
-          //   return <div>{`key:${option.children};value:${option.value}`}</div>;
-          // }}
-        />
-        <Button
-          onClick={() => {
-            selected.forEach((item) => {
-              cloudStorage.delete(`${item.label}`);
-            });
-            defaultKeyListHandler();
-            setSelected([]);
-          }}
-        >
-          delete
-        </Button>
-      </div>
-    </List>
+      <Multiselect
+        options={options}
+        value={selected}
+        onChange={(e) => setSelected(e)}
+        // renderChip={(option) => {
+        //   return <div>{`key:${option.children};value:${option.value}`}</div>;
+        // }}
+      />
+      <Button
+        onClick={async () => {
+          const _delList = Promise.all(
+            selected.map((item) => cloudStorage.delete(item.key))
+          );
+          await _delList;
+          defaultKeyListHandler();
+          setSelected([]);
+        }}
+      >
+        Delete
+      </Button>
+    </div>
   );
 };

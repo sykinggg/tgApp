@@ -1,5 +1,5 @@
 import { initBackButton, initClosingBehavior } from '@telegram-apps/sdk-react';
-import { List, SegmentedControl } from '@telegram-apps/telegram-ui';
+import { SegmentedControl } from '@telegram-apps/telegram-ui';
 import { useEffect, useState } from 'react';
 
 const { Item: SegmentedControlItem } = SegmentedControl;
@@ -32,33 +32,25 @@ export const ClosingBehaviorView = () => {
   }, [closingBehavior]);
 
   return (
-    <List
-      style={{
-        background: 'var(--tgui--secondary_bg_color)',
-        padding: '40px',
-        width: 500,
-      }}
-    >
-      <SegmentedControl>
-        <SegmentedControlItem
-          onClick={() => {
-            closingBehavior.enableConfirmation();
-            console.log('enableConfirmation');
-          }}
-          selected={closingBehaviorVisible}
-        >
-          enableConfirmation
-        </SegmentedControlItem>
-        <SegmentedControlItem
-          onClick={() => {
-            closingBehavior.disableConfirmation();
-            console.log('disableConfirmation');
-          }}
-          selected={!closingBehaviorVisible}
-        >
-          disableConfirmation
-        </SegmentedControlItem>
-      </SegmentedControl>
-    </List>
+    <SegmentedControl>
+      <SegmentedControlItem
+        onClick={() => {
+          closingBehavior.enableConfirmation();
+          console.log('enableConfirmation');
+        }}
+        selected={closingBehaviorVisible}
+      >
+        enableConfirmation
+      </SegmentedControlItem>
+      <SegmentedControlItem
+        onClick={() => {
+          closingBehavior.disableConfirmation();
+          console.log('disableConfirmation');
+        }}
+        selected={!closingBehaviorVisible}
+      >
+        disableConfirmation
+      </SegmentedControlItem>
+    </SegmentedControl>
   );
 };

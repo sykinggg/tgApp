@@ -1,5 +1,5 @@
 import { initBiometryManager } from '@telegram-apps/sdk-react';
-import { Button, List } from '@telegram-apps/telegram-ui';
+import { Button } from '@telegram-apps/telegram-ui';
 import { useCallback, useEffect, useState } from 'react';
 
 export const BiometryManagerView = () => {
@@ -81,28 +81,28 @@ export const BiometryManagerView = () => {
   }, [defaultBmChangeHandler]);
 
   return (
-    <List
-      style={{
-        background: 'var(--tgui--secondary_bg_color)',
-        padding: '40px',
-        width: 500,
-      }}
-    >
-      <div>
+    <div className="flex flex-col gap-y-2">
+      <div className="flex px-2 items-center py-4">
         <span>{token}</span>
-        <Button onClick={() => authenticatingHandler()}>Authenticating</Button>
+        <Button onClick={() => authenticatingHandler()} className="grow">
+          Authenticating
+        </Button>
       </div>
-      <div>
-        <Button onClick={() => openSettingHandler()}>Opening Settings</Button>
+      <div className="flex px-2 items-center py-4">
+        <Button onClick={() => openSettingHandler()} className="grow">
+          Opening Settings
+        </Button>
       </div>
-      <div>
-        <Button onClick={() => requestAccessHandler()}>
+      <div className="flex px-2 items-center py-4">
+        <Button onClick={() => requestAccessHandler()} className="grow">
           Requesting Access
         </Button>
       </div>
-      <div>
-        <Button onClick={() => updateTokenHandler()}>updateToken</Button>
+      <div className="flex px-2 items-center py-4">
+        <Button onClick={() => updateTokenHandler()} className="grow">
+          updateToken
+        </Button>
       </div>
-    </List>
+    </div>
   );
 };

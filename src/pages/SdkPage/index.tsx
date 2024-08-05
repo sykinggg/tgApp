@@ -8,6 +8,8 @@ export enum SdkPageTypeEnum {
   ClosingBehavior = 'ClosingBehavior',
   CloudStorageView = 'CloudStorageView',
   HapticFeedbackView = 'HapticFeedbackView',
+  InitDataView = 'InitDataView',
+  InvoiceView = 'InvoiceView',
 }
 
 export const SdkPage = () => {
@@ -18,6 +20,8 @@ export const SdkPage = () => {
       SdkPageTypeEnum.ClosingBehavior,
       SdkPageTypeEnum.CloudStorageView,
       SdkPageTypeEnum.HapticFeedbackView,
+      SdkPageTypeEnum.InitDataView,
+      SdkPageTypeEnum.InvoiceView,
     ].map((type) => (
       <Link to={`/sdkDetail/${type}`} key={type}>
         <Cell subtitle={`sdk ${type}`}>{type.replace('view', '')}</Cell>
