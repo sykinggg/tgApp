@@ -31,7 +31,7 @@ export const routes: RouteType[] = [
     title: 'SDK',
   },
   {
-    path: '/sdkDetail/:id',
+    path: '/sdkDetail/:type',
     Component: SdkDetailPage,
   },
   {

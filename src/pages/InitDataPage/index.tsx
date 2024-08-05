@@ -1,8 +1,15 @@
 import { type FC, useMemo } from 'react';
-import { useInitData, useLaunchParams, type User } from '@telegram-apps/sdk-react';
+import {
+  useInitData,
+  useLaunchParams,
+  type User,
+} from '@telegram-apps/sdk-react';
 import { List, Placeholder } from '@telegram-apps/telegram-ui';
 
-import { DisplayData, type DisplayDataRow } from '@/components/DisplayData/DisplayData.tsx';
+import {
+  DisplayData,
+  type DisplayDataRow,
+} from '@/components/DisplayData/DisplayData.tsx';
 
 function getUserRows(user: User): DisplayDataRow[] {
   return [
@@ -58,7 +65,9 @@ export const InitDataPage: FC = () => {
   }, [initData]);
 
   const receiverRows = useMemo<DisplayDataRow[] | undefined>(() => {
-    return initData && initData.receiver ? getUserRows(initData.receiver) : undefined;
+    return initData && initData.receiver
+      ? getUserRows(initData.receiver)
+      : undefined;
   }, [initData]);
 
   const chatRows = useMemo<DisplayDataRow[] | undefined>(() => {
@@ -92,10 +101,10 @@ export const InitDataPage: FC = () => {
   }
   return (
     <List>
-      <DisplayData header={'Init Data'} rows={initDataRows}/>
-      {userRows && <DisplayData header={'User'} rows={userRows}/>}
-      {receiverRows && <DisplayData header={'Receiver'} rows={receiverRows}/>}
-      {chatRows && <DisplayData header={'Chat'} rows={chatRows}/>}
+      <DisplayData header={'Init Data'} rows={initDataRows} />
+      {userRows && <DisplayData header={'User'} rows={userRows} />}
+      {receiverRows && <DisplayData header={'Receiver'} rows={receiverRows} />}
+      {chatRows && <DisplayData header={'Chat'} rows={chatRows} />}
     </List>
   );
 };
