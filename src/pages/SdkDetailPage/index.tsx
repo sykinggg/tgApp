@@ -8,6 +8,8 @@ import {
   HapticFeedbackView,
   InitDataView,
   InvoiceView,
+  MainButtonView,
+  MiniAppView,
 } from './components';
 
 export const SdkDetailPage = () => {
@@ -28,6 +30,10 @@ export const SdkDetailPage = () => {
         return <InitDataView />;
       case SdkPageTypeEnum.InvoiceView:
         return <InvoiceView />;
+      case SdkPageTypeEnum.MainButtonView:
+        return <MainButtonView />;
+      case SdkPageTypeEnum.MiniAppView:
+        return <MiniAppView />;
       default:
         return <>none</>;
     }

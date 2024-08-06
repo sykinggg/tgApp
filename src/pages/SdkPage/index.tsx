@@ -10,6 +10,8 @@ export enum SdkPageTypeEnum {
   HapticFeedbackView = 'HapticFeedbackView',
   InitDataView = 'InitDataView',
   InvoiceView = 'InvoiceView',
+  MainButtonView = 'MainButtonView',
+  MiniAppView = 'MiniAppView',
 }
 
 export const SdkPage = () => {
@@ -22,6 +24,8 @@ export const SdkPage = () => {
       SdkPageTypeEnum.HapticFeedbackView,
       SdkPageTypeEnum.InitDataView,
       SdkPageTypeEnum.InvoiceView,
+      SdkPageTypeEnum.MainButtonView,
+      SdkPageTypeEnum.MiniAppView,
     ].map((type) => (
       <Link to={`/sdkDetail/${type}`} key={type}>
         <Cell subtitle={`sdk ${type}`}>{type.replace('view', '')}</Cell>
